@@ -1,0 +1,29 @@
+
+
+services:
+  # The Python Application (Flask)
+  web:
+    build: .
+    command: python app.py
+    volumes:
+      - .:/app
+    ports:
+      - "5001:5000"  # Mapped to 5001 so it doesn't clash with your other app
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://user:password@db:5432/code_library
+    depends_on:
+      - db
+
+  # The Database (PostgreSQL)
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=code_library
+
+volumes:
+  postgres_data:
