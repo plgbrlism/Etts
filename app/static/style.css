@@ -1,0 +1,172 @@
+/* --- RESET & BASE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #121212; /* Spotify Main Black */
+    color: #b3b3b3;            /* Spotify Light Grey Text */
+    height: 100vh;
+    overflow: hidden;          /* Prevent full page scroll */
+}
+
+/* --- LAYOUT GRID --- */
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* --- SIDEBAR (The Library) --- */
+.sidebar {
+    width: 280px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 10px;
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
+
+.brand h2 {
+    color: white;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.snippet-list {
+    list-style: none;
+    overflow-y: auto; /* Scrollable list */
+    padding-right: 5px;
+}
+
+/* Scrollbar Styling for Sidebar */
+.snippet-list::-webkit-scrollbar {
+    width: 8px;
+}
+.snippet-list::-webkit-scrollbar-thumb {
+    background-color: #535353;
+    border-radius: 4px;
+}
+
+/* --- SIDEBAR ITEMS --- */
+.snippet-row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #b3b3b3;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.snippet-row:hover {
+    background-color: #282828;
+    color: white;
+}
+
+.snippet-row.active {
+    background-color: #282828;
+    color: #1db954; /* Spotify Green */
+}
+
+/* The Language Tag (Python, SQL) */
+.lang-tag {
+    font-size: 0.65rem;
+    background: #333;
+    padding: 3px 0;
+    border-radius: 3px;
+    margin-right: 12px;
+    color: white;
+    text-transform: uppercase;
+    width: 55px;
+    text-align: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- MAIN STAGE (The Code Player) --- */
+.main-content {
+    flex: 1;
+    background: linear-gradient(180deg, #1e1e1e 0%, #121212 100%);
+    padding: 40px;
+    overflow-y: auto; /* Main area scrolls independently */
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    margin-top: 15px;
+    letter-spacing: -1px;
+}
+
+.badge {
+    background-color: #1db954;
+    color: #000;
+    padding: 6px 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.code-container {
+    max-width: 900px;
+}
+
+.description {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #b3b3b3;
+}
+
+/* --- SYNTAX HIGHLIGHTING OVERRIDES --- */
+/* This overrides the Prism.js default style to fit the theme */
+pre[class*="language-"] {
+    border-radius: 8px !important;
+    padding: 25px !important;
+    background: #282828 !important; /* Slightly lighter than bg */
+    border: 1px solid #333 !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    margin-top: 20px;
+}
+
+code[class*="language-"], pre[class*="language-"] {
+    text-shadow: none !important;
+    font-family: 'Fira Code', 'Consolas', monospace !important;
+    font-size: 0.95rem;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    color: #b3b3b3;
+}
+.empty-state h1 {
+    color: white;
+    margin-bottom: 10px;
+}

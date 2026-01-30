@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS snippets (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    language VARCHAR(50) NOT NULL,
+    code TEXT NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

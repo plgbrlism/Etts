@@ -4,7 +4,7 @@ services:
   # The Python Application (Flask)
   web:
     build: .
-    command: python app.py
+    command: python run.py
     volumes:
       - .:/app
     ports:

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="sidebar">
+    <div class="brand">
+        <h2>My Library</h2>
+    </div>
+    <ul class="snippet-list">
+        {% for snippet in snippets %}
+        <li>
+            <a href="/snippet/{{ snippet.id }}" class="snippet-row {% if active_snippet and active_snippet.id == snippet.id %}active{% endif %}">
+                <span class="lang-tag">{{ snippet.language }}</span>
+                <span class="title">{{ snippet.title }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="main-content">
+    {% if active_snippet %}
+        <div class="header">
+            <span class="badge">{{ active_snippet.language }}</span>
+            <h1>{{ active_snippet.title }}</h1>
+        </div>
+        <div class="code-container">
+            <p class="description">{{ active_snippet.description }}</p>
+            <pre><code class="language-{{ active_snippet.language }}">{{ active_snippet.code }}</code></pre>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h1>No Snippets</h1>
+            <p>Your library is empty.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
